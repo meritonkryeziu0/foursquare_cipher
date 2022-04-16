@@ -30,13 +30,18 @@ def encrypt(keys, plaintext):
     ciphertext = ''
     plaintext = re.sub(r'[\W]', '', plaintext).upper().replace('Q', '') #largo Q dhe karakteret jo alfanumerike
     topRight, bottomLeft  = generate_table(key[0]), generate_table(key[1])      #gjenero dy tabela per dy pjese te qelesi
-    
+
+    for i in range(0, len(plaintext), 2):   #itero pergjat plaintextit duke rritur per 2 sepse plaintext-i ndahet ne digrafe
+        digraphs = plaintext[i:i+2]         #plaintext-i mund te indeksohet si varg karakteresh dhe merren digrafet 0-2, 2-4...
+        ciphertext += mangle(topRight, bottomLeft, digraphs)
+    return ciphertext
+
 def mangle(topRight, bottomLeft, digraphs):
 
     a = position(table, digraphs[0])        #kthen poziten e karakterit te pare te digrafit bazuar ne tabelen e alfabetit
     b = position(table, digraphs[1])
     return topRight[a[0]][b[1]] + bottomLeft[b[0]][a[1]]    #kthen karakteret ne baze te renditjes se matricave
-  '''	
+    '''	
                 topRight	
      table         	
     a b c d e   S I G U R	
@@ -58,6 +63,15 @@ def decrypt(keys, plaintext):
     ciphertext = ''	
     plaintext = re.sub(r'[\W]', '', plaintext).upper().replace('Q', '')	
     topRight, bottomLeft = generate_table(key[0]), generate_table(key[1])
+    for i in range(0, len(plaintext), 2):
+        digraphs = plaintext[i:i+2]
+        ciphertext += unmangle(topRight, bottomLeft, digraphs)
+    return ciphertext.lower()
+
+def unmangle(topRight, bottomLeft, digraphs):
+    a = position(topRight, digraphs[0])
+    b = position(bottomLeft, digraphs[1])
+    return table[a[0]][b[1]] + table[b[0]][a[1]]
          # todo	
 def position(table, ch):	
     for row in range(5):	
