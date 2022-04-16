@@ -36,6 +36,11 @@ def mangle(topRight, bottomLeft, digraphs):
     	
     bottomLeft	
     '''
+         		
+def decrypt(keys, plaintext):	
+    ciphertext = ''	
+    plaintext = re.sub(r'[\W]', '', plaintext).upper().replace('Q', '')	
+    topRight, bottomLeft = generate_table(key[0]), generate_table(key[1])
          # todo	
 def position(table, ch):	
     for row in range(5):	
