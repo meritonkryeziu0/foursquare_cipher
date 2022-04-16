@@ -13,7 +13,24 @@ def generate_table(key = ''):
     table = [[0] * 5 for row in range(5)] # krijo nje tabele 5x5 me elementet fillestare 0	
     	
     # Largon te gjitha karakteret jasht rangut {a-z, A-Z, 0-9} dhe kthen qelsin ne uppercase
+    key = re.sub(r'[\W]', '', key).upper()
+    for row in range(5):
+        for col in range(5):
+            if len(key) > 0:
+                table[row][col] = key[0]                #zevendeso ne matrice karakteret e qelesit derisa gjatesia e qelesit >0
+                alphabet = alphabet.replace(key[0], '') #largo karakterin ne alfabet i cili eshte karakteri i par tek qelsi
+                key = key.replace(key[0], '')           #largo karakterin e par te qelsit pas zevendesimit ne matric
+            else:
+                table[row][col] = alphabet[0]
+                alphabet = alphabet[1:]                 #largo karakterin e par te alfabetit
+    
+    return table
 
+def encrypt(keys, plaintext):
+    ciphertext = ''
+    plaintext = re.sub(r'[\W]', '', plaintext).upper().replace('Q', '') #largo Q dhe karakteret jo alfanumerike
+    topRight, bottomLeft  = generate_table(key[0]), generate_table(key[1])      #gjenero dy tabela per dy pjese te qelesi
+    
 def mangle(topRight, bottomLeft, digraphs):
 
     a = position(table, digraphs[0])        #kthen poziten e karakterit te pare te digrafit bazuar ne tabelen e alfabetit
