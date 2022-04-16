@@ -22,17 +22,17 @@ def mangle(topRight, bottomLeft, digraphs):
   '''	
                 topRight	
      table         	
-    a b c d e   E X A M P	
-    f g h i j   L B C D F	
-    k l m n o   G H I J K	
-    p r s t u   N O R S T	
-    v w x y z   U V W Y Z	
+    a b c d e   S I G U R	
+    f g h i j   A B C D E	
+    k l m n o   F H J K L	
+    p r s t u   M N O P T	
+    v w x y z   V W X Y Z	
     	
-    K E Y W O   a b c d e	
-    R D A B C   f g h i j	
-    F G H I J   k l m n o	
-    L M N P S   p r s t u	
-    T U V X Z   v w x y z	
+    P Y T H O   a b c d e	
+    N A B C D   f g h i j	
+    E F G I J   k l m n o	
+    K L M R S   p r s t u	
+    U V W X Z   v w x y z
     	
     bottomLeft	
     '''
