@@ -83,6 +83,8 @@ def position(table, ch):
 
 if __name__ == '__main__':
     plaintext = 'Dite e mire'
+    if (len(plaintext)%2!=0):
+        plaintext = plaintext + plaintext[-1:]
     key = ['siguri', 'python']
 
     ciphertext = encrypt(key, plaintext)
