@@ -40,6 +40,8 @@ def mangle(topRight, bottomLeft, digraphs):
 
     a = position(table, digraphs[0])        #kthen poziten e karakterit te pare te digrafit bazuar ne tabelen e alfabetit
     b = position(table, digraphs[1])
+    # print(a);
+                    # row  col                row   col
     return topRight[a[0]][b[1]] + bottomLeft[b[0]][a[1]]    #kthen karakteret ne baze te renditjes se matricave
     '''	
                 topRight	
@@ -83,12 +85,14 @@ def position(table, ch):
 
 if __name__ == '__main__':
     plaintext = 'Dite e mire'
+    plaintext = re.sub(r'[\W]', '', plaintext).upper().replace('Q', '')
     if (len(plaintext)%2!=0):
-        plaintext = plaintext + plaintext[-1:]
+        plaintext = plaintext + 'X'
+        # plaintext = plaintext + 'Q'
     key = ['siguri', 'python']
 
     ciphertext = encrypt(key, plaintext)
     print("\n++++++++++++++++++++++++++++++++++++++++++++++++++")
-    print("Plain teksti: {0}        len: {1}\n".format(plaintext,len(plaintext)))
+    print("Plain teksti:  {0}         len: {1}\n".format(plaintext,len(plaintext)))
     print("Cipher teksti: {0}         len: {1}".format(ciphertext, len(ciphertext)))
     print("++++++++++++++++++++++++++++++++++++++++++++++++++\n")
